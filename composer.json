@@ -1,0 +1,29 @@
+{
+    "name": "demi/sitemap-generator",
+    "description": "Yii2 component for generate sitemap.xml files.",
+    "keywords": ["yii2", "sitemap", "xml", "cron"],
+    "homepage": "https://github.com/demisang/yii2-sitemap-generator#readme",
+    "type": "yii2-extension",
+    "license": "GNU",
+    "authors": [
+        {
+            "name": "Ivan Orlov",
+            "email": "orlov_mail@mail.ru",
+            "homepage": "http://ivan-orlov.com/",
+            "role": "Creator"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/demisang/yii2-sitemap-generator/issues",
+        "source": "https://github.com/demisang/yii2-sitemap-generator"
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "demi\\sitemap\\": ""
+        }
+    }
+}
