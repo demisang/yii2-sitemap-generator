@@ -9,24 +9,24 @@ namespace demi\sitemap\interfaces;
  */
 interface Basic
 {
-    const LASTMOD_ALWAYS = 'always';
-    const LASTMOD_HOURLY = 'hourly';
-    const LASTMOD_DAILY = 'daily';
-    const LASTMOD_WEEKLY = 'weekly';
-    const LASTMOD_MONTHLY = 'monthly';
-    const LASTMOD_YEARLY = 'yearly';
-    const LASTMOD_NEVER = 'never';
+    const CHANGEFREQ_ALWAYS = 'always';
+    const CHANGEFREQ_HOURLY = 'hourly';
+    const CHANGEFREQ_DAILY = 'daily';
+    const CHANGEFREQ_WEEKLY = 'weekly';
+    const CHANGEFREQ_MONTHLY = 'monthly';
+    const CHANGEFREQ_YEARLY = 'yearly';
+    const CHANGEFREQ_NEVER = 'never';
 
-    const PRIORITY_0 = '0,0';
-    const PRIORITY_1 = '0,1';
-    const PRIORITY_2 = '0,2';
-    const PRIORITY_3 = '0,3';
-    const PRIORITY_4 = '0,4';
-    const PRIORITY_5 = '0,5';
-    const PRIORITY_6 = '0,6';
-    const PRIORITY_7 = '0,7';
-    const PRIORITY_8 = '0,8';
-    const PRIORITY_9 = '0,9';
+    const PRIORITY_0 = '0.0';
+    const PRIORITY_1 = '0.1';
+    const PRIORITY_2 = '0.2';
+    const PRIORITY_3 = '0.3';
+    const PRIORITY_4 = '0.4';
+    const PRIORITY_5 = '0.5';
+    const PRIORITY_6 = '0.6';
+    const PRIORITY_7 = '0.7';
+    const PRIORITY_8 = '0.8';
+    const PRIORITY_9 = '0.9';
     const PRIORITY_10 = '1,0';
 
     /**

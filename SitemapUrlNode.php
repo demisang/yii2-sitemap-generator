@@ -124,7 +124,7 @@ class SitemapUrlNode extends Object
 
     /**
      * Set priority value
-     * May be between 0,0 - 1,0
+     * May be between 0.0 - 1.0
      *
      * @param string $priority
      *
