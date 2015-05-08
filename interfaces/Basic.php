@@ -27,7 +27,7 @@ interface Basic
     const PRIORITY_7 = '0.7';
     const PRIORITY_8 = '0.8';
     const PRIORITY_9 = '0.9';
-    const PRIORITY_10 = '1,0';
+    const PRIORITY_10 = '1.0';
 
     /**
      * Get [[ActiveQuery]] for searh models on specified $lang
