@@ -2,14 +2,14 @@
 
 namespace demi\sitemap;
 
-use demi\sitemap\interfaces\Basic;
-use demi\sitemap\interfaces\GoogleAlternateLang;
-use demi\sitemap\interfaces\GoogleImage;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\console\Controller;
 use yii\db\ActiveRecord;
 use yii\helpers\Console;
+use demi\sitemap\interfaces\Basic;
+use demi\sitemap\interfaces\GoogleAlternateLang;
+use demi\sitemap\interfaces\GoogleImage;
 
 /**
  * Class SitemapController
@@ -113,7 +113,8 @@ class SitemapController extends Controller
     public function handleModels(array $models)
     {
         $builder = $this->builder;
-        $builder->beginNewFile();
+
+        $builder->start();
 
         foreach ($models as $model) {
             $languages = (array)(isset($model->languages) ? $model->languages : Yii::$app->language);
@@ -129,9 +130,7 @@ class SitemapController extends Controller
             }
         }
 
-        if (!$builder->isFileClosed()) {
-            $builder->writeFooter();
-        }
+        $builder->finish();
     }
 
     /**
@@ -231,4 +230,4 @@ class SitemapController extends Controller
             $this->_schemas['alternate'] = 'xmlns:xhtml="http://www.w3.org/1999/xhtml"';
         }
     }
-} 
+}

@@ -90,7 +90,7 @@ class SitemapBuilder extends Object
         $f = @fopen($fullPath, 'w');
 
         if ($f === false) {
-            throw new Exception("I'm can not create file '$fullPath'");
+            throw new Exception("I'm cannot create file '$fullPath'");
         }
 
         // Add new filename to list of exists
@@ -143,4 +143,54 @@ class SitemapBuilder extends Object
         // Write new <url> section to current file
         return (bool)$this->appendToFile($url . PHP_EOL);
     }
-} 
+
+    public function start()
+    {
+        $this->beginNewFile();
+    }
+
+    public function finish()
+    {
+        // complete file if needed
+        if (!$this->isFileClosed()) {
+            $this->writeFooter();
+        }
+
+        $savePath = Yii::getAlias($this->savePathAlias);
+        $sitemapFilename = $savePath . DIRECTORY_SEPARATOR . $this->sitemapFileName;
+
+        if (count($this->_filesList) === 1) {
+            // rename created file to actual sitemap name
+            $oldName = $savePath . DIRECTORY_SEPARATOR . $this->_filesList[0];
+
+            if (!rename($oldName, $sitemapFilename)) {
+                throw new Exception("I'm cannot rename file from '$oldName' to '$sitemapFilename'");
+            }
+
+            return true;
+        }
+
+        // if count of files greater than 1 - create sitemap-index file
+
+        $this->_file = @fopen($sitemapFilename, 'w');
+
+        $xml = [];
+        $xml[] = '<?xml version="1.0" encoding="UTF-8"?>';
+        $xml[] = '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+
+        foreach ($this->_filesList as $file) {
+            $xml[] = "\t<sitemap>";
+            $xml[] = "\t\t<loc>" . Yii::$app->urlManager->baseUrl . '/' . $file . '</loc>';
+            // @todo set actual lastmod value
+            $xml[] = "\t\t<lastmod>" . date(DATE_W3C) . '</lastmod>';
+            $xml[] = "\t</sitemap>";
+        }
+
+        $xml[] = "</sitemapindex>";
+
+        $this->appendToFile(implode(PHP_EOL, $xml));
+
+        // Close current file
+        return @fclose($this->_file);
+    }
+}
