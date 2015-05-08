@@ -15,8 +15,7 @@ or
 Add to composer.json in your project
 ```json
 {
-	"require":
-	{
+	"require": {
   		"demi/sitemap-generator": "~1.0"
 	}
 }
@@ -28,7 +27,7 @@ php composer.phar update
 
 Configuration
 -------------
-Edit /console/config/main.php
+Edit "./console/config/main.php"
 ```php
 return [
     'controllerMap' => [
@@ -40,6 +39,50 @@ return [
             'sitemapFileName' => 'sitemap.xml', // Name of main sitemap-file in [[savePathAlias]] directory
         ],
     ],
+];
+```
+"./environments/prod/console/config/main-local.php"
+```php
+'components' => [
+    // fix console create url
+    'urlManager' => [
+        'baseUrl' => 'http://example.com',
+    ],
+],
+```
+"./environments/dev/console/config/main-local.php"
+```php
+'components' => [
+    // fix console create url
+    'urlManager' => [
+        'baseUrl' => 'http://example.local',
+    ],
+],
+```
+run command
+```code
+php ./init
+```
+
+OR just apply same config to your "/console/config/main-local.php"
+
+ALSO you can merge urlManager rules from frontend(or common) to console config.
+Just change "/console/config/main.php" file:
+```php
+// get config of urlManager from frontend for correctly create urls in console app
+$frontend = require(__DIR__ . '/../../frontend/config/main.php');
+$frontendUrlManager = [
+    'components' => [
+        'urlManager' => $frontend['components']['urlManager'],
+    ],
+];
+
+// ...
+
+// Merge frontend urlManager config with console application main config
+return yii\helpers\ArrayHelper::merge($frontendUrlManager, [
+    'id' => 'app-console',
+    // ...
 ];
 ```
 
