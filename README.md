@@ -17,7 +17,7 @@ Add to composer.json in your project
 {
 	"require":
 	{
-  		"demi/sort": "~1.0"
+  		"demi/sitemap-generator": "~1.0"
 	}
 }
 ```
