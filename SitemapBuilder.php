@@ -17,7 +17,7 @@ class SitemapBuilder extends Object
         'xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
     ];
     /** @var int Max count of <url> per one file */
-    public $urlsPerFile = 50000;
+    public $urlsPerFile = 10000;
 
     /** @var int Count items in current file */
     private $_itemsCount = 0;
@@ -129,16 +129,18 @@ class SitemapBuilder extends Object
      */
     public function writeUrl(SitemapUrlNode $url)
     {
-        // if count of writed items more than allowed per one xml sitemap file
+        // if count of written items more than allowed per one xml sitemap file
         if (++$this->_itemsCount > $this->urlsPerFile) {
             // Ending of current file
             $this->writeFooter();
 
             // Starting new file
             $this->beginNewFile();
+
+            return $this->writeUrl($url);
         }
 
         // Write new <url> section to current file
-        return (bool)$this->appendToFile($url.PHP_EOL);
+        return (bool)$this->appendToFile($url . PHP_EOL);
     }
 } 
