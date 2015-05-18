@@ -37,7 +37,8 @@ class SitemapUrlNode extends Object
 
         // Basic data
         if ($this->lastmod !== null) {
-            $url[] = "\t<lastmod>" . date(DATE_W3C, strtotime($this->lastmod)) . '</lastmod>';
+            $lastmod = is_int($this->lastmod) ? $this->lastmod : strtotime($this->lastmod);
+            $url[] = "\t<lastmod>" . date(DATE_W3C, $lastmod) . '</lastmod>';
         }
 
         if ($this->changefreq !== null) {

@@ -30,7 +30,16 @@ interface Basic
     const PRIORITY_10 = '1.0';
 
     /**
-     * Get [[ActiveQuery]] for searh models on specified $lang
+     * Get list of static content items on the specified $lang
+     *
+     * @param string|null $lang Language code
+     *
+     * @return array
+     */
+    public function getSitemapItems($lang = null);
+
+    /**
+     * Get [[ActiveQuery]] for searh models the specified $lang
      *
      * @param string|null $lang Language code for searching models
      *
@@ -43,7 +52,7 @@ interface Basic
      * if your web server requires it. This value must be less than 2,048 characters.
      * @url http://www.sitemaps.org/protocol.html#locdef
      *
-     * @param string|null $lang Required language of items content
+     * @param string|null $lang language of items content
      *
      * @return string
      */
@@ -57,7 +66,7 @@ interface Basic
      * and search engines may use the information from both sources differently.
      * @url http://www.sitemaps.org/protocol.html#lastmoddef
      *
-     * @param string|null $lang Required language of items content
+     * @param string|null $lang language of items content
      *
      * @return string
      */
@@ -88,7 +97,7 @@ interface Basic
      *
      * @url http://www.sitemaps.org/protocol.html#changefreqdef
      *
-     * @param string|null $lang Required language of items content
+     * @param string|null $lang language of items content
      *
      * @return string
      */
@@ -110,7 +119,7 @@ interface Basic
      * Since the priority is relative, it is only used to select between URLs on your site.
      * @url http://www.sitemaps.org/protocol.html#prioritydef
      *
-     * @param string|null $lang Required language of items content
+     * @param string|null $lang language of items content
      *
      * @return string
      */
