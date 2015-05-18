@@ -86,6 +86,11 @@ return yii\helpers\ArrayHelper::merge($frontendUrlManager, [
 ];
 ```
 
+Also useful append .gitignore for ignore all generated sitemaps files:
+```code
+# sitemaps
+/frontend/web/sitemap*.xml
+```
 
 
 TBD: creating sitemap-data models
