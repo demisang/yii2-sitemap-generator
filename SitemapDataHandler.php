@@ -33,6 +33,8 @@ class SitemapDataHandler extends Object
     private $_builder;
     /** @var array xml-schemas collected by Model implements */
     private $_schemas = [];
+    /** @var string Original site language. Need for swith app languages */
+    protected static $_appLanguage;
 
     public function __construct($savePathAlias, $sitemapFileName, $config = [])
     {
@@ -108,12 +110,20 @@ class SitemapDataHandler extends Object
         $builder->start();
 
         foreach ($models as $model) {
-            $languages = (array)(isset($model->languages) ? $model->languages : Yii::$app->language);
+            $languages = (array)(isset($model->sitemapLanguages) ? $model->sitemapLanguages : Yii::$app->language);
 
             if (count($languages) > 1) {
                 // Handle separately for each language
                 foreach ($languages as $language) {
+                    // Swith App language to $language
+                    if (isset($model->sitemapSwithLanguages) && $model->sitemapSwithLanguages) {
+                        static::setLanguage($language);
+                    }
+
                     $this->handleModel($model, $language);
+
+                    // Restore App language
+                    static::restoreLanguage();
                 }
             } else {
                 // Handle only one language
@@ -206,7 +216,7 @@ class SitemapDataHandler extends Object
 
         // Google alternate links
         if ($item instanceof GoogleAlternateLang || $item instanceof SitemapArrayItem) {
-            $links = $item->getSitemapAlternateLinks($item);
+            $links = $item->getSitemapAlternateLinks();
 
             foreach ($links as $hreflang => $href) {
                 $url->addAlternateLink($hreflang, $href);
@@ -277,6 +287,28 @@ class SitemapDataHandler extends Object
     {
         if (Yii::$app instanceof \yii\console\Application && Yii::$app->controller->interactive) {
             Yii::$app->controller->stdout($text . PHP_EOL, $fg, $bg);
+        }
+    }
+
+    /**
+     * Set new app language and save original language for future restore
+     *
+     * @param string $lang
+     */
+    public static function setLanguage($lang)
+    {
+        static::$_appLanguage = Yii::$app->language;
+
+        Yii::$app->language = $lang;
+    }
+
+    /**
+     * Restore app language, saved in [[setLanguage]] function
+     */
+    public static function restoreLanguage()
+    {
+        if (static::$_appLanguage !== null) {
+            Yii::$app->language = static::$_appLanguage;
         }
     }
 }

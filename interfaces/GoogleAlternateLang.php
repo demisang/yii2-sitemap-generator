@@ -2,8 +2,6 @@
 
 namespace demi\sitemap\interfaces;
 
-use yii\db\ActiveRecord;
-
 /**
  * Interface GoogleAlternateLang
  *
@@ -14,11 +12,9 @@ use yii\db\ActiveRecord;
 interface GoogleAlternateLang
 {
     /**
-     * Get list of alternate links for $material
-     *
-     * @param static|self|mixed $material
+     * Get list of alternate links
      *
      * @return array
      */
-    public function getSitemapAlternateLinks($material);
+    public function getSitemapAlternateLinks();
 } 

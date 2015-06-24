@@ -5,6 +5,10 @@ namespace demi\sitemap\interfaces;
 /**
  * Basic interface for general sitemap.xml file
  *
+ * @property array $sitemapLanguages     List of app languages. Default is [Yii::$app->language].
+ * @property int $sitemapBatchSize       Size of one part selected from DB. Default is 10.
+ * @property bool $sitemapSwithLanguages If TRUE - DataHandler will be swith App language to currently handled language.
+ *
  * @package demi\sitemap\interfaces
  */
 interface Basic
