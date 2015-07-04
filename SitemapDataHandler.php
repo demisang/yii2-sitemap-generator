@@ -79,7 +79,7 @@ class SitemapDataHandler extends Object
             $className = $modelsNamespace . '\\' . str_replace($ext, '', $file);
 
             // Create new model instance
-            $model = new $className;
+            $model = Yii::createObject($className);
 
             if (!$model instanceof Basic) {
                 $this->printMessage('Warning: model "' . $className . '" does not implement interface ' .
