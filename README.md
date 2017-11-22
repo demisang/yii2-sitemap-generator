@@ -94,7 +94,7 @@ Sitemap-data models (important!)
 You should create special sitemap-models for each your model, that should be in result sitemap.xml.<br />
 So let's create a maximal sitemap model extended from you `Post` model and attach interfaces:<br />
 /console/models/sitemap/SitemapPost.php
-```
+```php
 <?php
 
 namespace console\models\sitemap;
