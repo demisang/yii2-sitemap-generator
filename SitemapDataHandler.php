@@ -1,9 +1,15 @@
 <?php
+/**
+ * @copyright Copyright (c) 2018 Ivan Orlov
+ * @license   https://github.com/demisang/yii2-sitemap-generator/blob/master/LICENSE
+ * @link      https://github.com/demisang/yii2-sitemap-generator#readme
+ * @author    Ivan Orlov <gnasimed@gmail.com>
+ */
 
 namespace demi\sitemap;
 
 use Yii;
-use yii\base\Object;
+use yii\base\BaseObject;
 use yii\db\ActiveRecord;
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
@@ -18,7 +24,7 @@ use demi\sitemap\interfaces\GoogleImage;
  *
  * @property SitemapBuilder $builder
  */
-class SitemapDataHandler extends Object
+class SitemapDataHandler extends BaseObject
 {
     /** @var string Path to saving sitemap-files. As webroot: "http://example.com" */
     public $savePathAlias = '@frontend/web';

@@ -1,11 +1,17 @@
 <?php
+/**
+ * @copyright Copyright (c) 2018 Ivan Orlov
+ * @license   https://github.com/demisang/yii2-sitemap-generator/blob/master/LICENSE
+ * @link      https://github.com/demisang/yii2-sitemap-generator#readme
+ * @author    Ivan Orlov <gnasimed@gmail.com>
+ */
 
 namespace demi\sitemap;
 
 use demi\sitemap\interfaces\Basic;
-use yii\base\Object;
+use yii\base\BaseObject;
 
-class SitemapUrlNode extends Object
+class SitemapUrlNode extends BaseObject
 {
     public $loc;
     public $lastmod;

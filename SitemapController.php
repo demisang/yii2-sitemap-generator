@@ -1,8 +1,12 @@
 <?php
+/**
+ * @copyright Copyright (c) 2018 Ivan Orlov
+ * @license   https://github.com/demisang/yii2-sitemap-generator/blob/master/LICENSE
+ * @link      https://github.com/demisang/yii2-sitemap-generator#readme
+ * @author    Ivan Orlov <gnasimed@gmail.com>
+ */
 
 namespace demi\sitemap;
-
-use Yii;
 
 use yii\console\Controller;
 
