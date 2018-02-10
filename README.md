@@ -53,7 +53,7 @@ php ./init
 ```
 OR just apply same config to your "/console/config/main-local.php"
 
-JUST ANOTHER: or you can merge urlManager rules from frontend(or common) to console config.<br />
+Also you can merge urlManager rules from frontend(or common) to console config.<br />
 Just change "/console/config/main.php" file:
 ```php
 // get config of urlManager from frontend for correctly create urls in console app
@@ -158,7 +158,7 @@ class SitemapPost extends Post implements Basic, GoogleImage, GoogleAlternateLan
     public function getSitemapItemsQuery($lang = null)
     {
         // Base select query for current model
-        return $this->find()
+        return static::find()
             ->select(['id', 'title', 'date', 'updated_at'])
             ->where(['status' => Post::STATUS_ACTIVE])
             ->orderBy(['date' => SORT_DESC]);
@@ -298,6 +298,6 @@ Usage
 -----
 Run Yii console command in project root:
 ```code
-php ./yii sitemap
+./yii sitemap
 ```
 then check "http://site/sitemap.xml" file
