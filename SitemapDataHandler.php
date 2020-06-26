@@ -56,8 +56,8 @@ class SitemapDataHandler extends BaseObject
      * @param string $modelsPath Alias to sitemap-models dir
      * @param string $modelsNamespace
      *
-     * @throws \yii\base\InvalidConfigException
      * @return ActiveRecord[]|Basic[]
+     * @throws \yii\base\InvalidConfigException
      */
     public function getModelsClasses($modelsPath, $modelsNamespace)
     {
@@ -156,6 +156,9 @@ class SitemapDataHandler extends BaseObject
                 /* @var $item Basic|GoogleImage|GoogleAlternateLang|ActiveRecord */
                 $this->handleItem($item, $lang);
             }
+        } elseif (is_callable($items)) {
+            // Call custom items func
+            call_user_func($items, $this);
         }
 
         // Search models in db
@@ -173,7 +176,7 @@ class SitemapDataHandler extends BaseObject
     /**
      * Handle sitemap item
      *
-     * @param Basic|GoogleImage|GoogleAlternateLang|ActiveRecord $item
+     * @param array|Basic|GoogleImage|GoogleAlternateLang|ActiveRecord $item
      * @param string $lang
      *
      * @return bool

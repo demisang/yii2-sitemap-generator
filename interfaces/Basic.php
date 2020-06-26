@@ -44,7 +44,7 @@ interface Basic
      *
      * @param string|null $lang Language code
      *
-     * @return array
+     * @return array|callable Sitemap Items array or [function (\demi\sitemap\SitemapDataHandler $dataHandler) {}]
      */
     public function getSitemapItems($lang = null);
 
